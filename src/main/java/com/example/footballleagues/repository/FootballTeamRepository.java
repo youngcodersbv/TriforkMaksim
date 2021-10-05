@@ -5,6 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface FootballTeamRepository extends CrudRepository <FootballTeam, Long> {
     Iterable<FootballTeam> findAll();
-    FootballTeam findById(long id);
 
 }

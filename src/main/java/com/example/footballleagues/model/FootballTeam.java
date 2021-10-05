@@ -1,9 +1,12 @@
 package com.example.footballleagues.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "teams", schema = "public")
+@JsonIgnoreProperties("league")
 public class FootballTeam {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
