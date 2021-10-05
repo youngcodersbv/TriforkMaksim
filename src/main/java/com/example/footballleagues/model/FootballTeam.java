@@ -3,6 +3,8 @@ package com.example.footballleagues.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.Locale;
+import java.util.function.Predicate;
 
 @Entity
 @Table(name = "teams", schema = "public")
@@ -17,6 +19,29 @@ public class FootballTeam {
     @ManyToOne()
     @JoinColumn(name = "league_id")
     private League league;
+
+
+    public static Predicate<FootballTeam> createFilter(String filter) {
+        return new Predicate<FootballTeam>() {
+            @Override
+            public boolean test(FootballTeam team) {
+                return filter(filter, team);
+            }
+        };
+    }
+
+    public static boolean filter(String filter, FootballTeam team) {
+        if(filter == null) {
+            return true;
+        }
+        if(team.getName().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT))) {
+            return true;
+        } else if(team.getHome().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public Long getId() {
         return id;

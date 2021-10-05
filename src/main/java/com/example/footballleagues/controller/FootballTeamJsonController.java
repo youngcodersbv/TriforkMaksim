@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
+
+import static com.example.footballleagues.model.FootballTeam.createFilter;
+
 @RestController()
 @RequestMapping(path = "/json/team")
 public class FootballTeamJsonController {
@@ -22,7 +25,7 @@ public class FootballTeamJsonController {
 
         List<FootballTeam> result = new ArrayList();
         StreamSupport.stream(commutes.spliterator(),false)
-                .filter(team -> {
+                .filter((FootballTeam team) -> {
                     if(filter == null) {
                         return true;
                     }
@@ -34,6 +37,11 @@ public class FootballTeamJsonController {
                         return false;
                     }
                 })
+                .filter((FootballTeam team) -> {
+                    return FootballTeam.filter(filter, team);
+                })
+                .filter(commute -> FootballTeam.filter(filter, commute))
+                .filter(createFilter(filter))
                 .forEach(result::add);
 
         return result.toArray(new FootballTeam[result.size()]);
