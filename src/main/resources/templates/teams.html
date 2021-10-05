@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--    <title>Hello I will be displayed in the browser title</title>-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>TEAMS</h1>
+<div></div>
+<table>
+    <thead>
+    <tr>
+        <th th:text="ID">ID</th>
+        <th th:text="Name"></th>
+        <th th:text="Home"></th>
+        <th th:text="League"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="x: ${team}">
+        <td th:text="${x.id}"></td>
+        <td th:text="${x.name}"></td>
+        <td th:text="${x.home}"></td>
+        <td th:text="${x.league}"></td>
+    </tr>
+    </tbody>
+
+</table>
+<p><a href="/leagues">Leagues overview</a></p>
+
+<form action="#" th:action="@{/teams}" th:object="${teams}" method="post">
+    <input type="text" th:value="${name}" name="name"/><br/>
+    <input type="text" th:value="${home}" name="home"/><br/>
+    <input type="text" th:value="${leagueId}" name="leagueId"/><br/>
+    <input type="submit"/>
+</form>
+</body>
+</html>
