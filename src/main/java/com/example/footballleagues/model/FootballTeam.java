@@ -31,12 +31,12 @@ public class FootballTeam {
     }
 
     public static boolean filter(String filter, FootballTeam team) {
-        if(filter == null) {
+        if (filter == null) {
             return true;
         }
-        if(team.getName().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT))) {
+        if (team.getName().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT))) {
             return true;
-        } else if(team.getHome().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT))) {
+        } else if (team.getHome().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT))) {
             return true;
         } else {
             return false;

@@ -18,10 +18,13 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/teams")
 public class FootballTeamController {
-    @Autowired
-    private FootballTeamRepository teamRepository;
-    @Autowired
-    private LeagueRepository leagueRepository;
+    private final FootballTeamRepository teamRepository;
+    private final LeagueRepository leagueRepository;
+
+    public FootballTeamController(FootballTeamRepository teamRepository, LeagueRepository leagueRepository) {
+        this.teamRepository = teamRepository;
+        this.leagueRepository = leagueRepository;
+    }
 
     @GetMapping
     public String teams(Model model) {
@@ -44,4 +47,6 @@ public class FootballTeamController {
         });
         return "redirect:/teams";
     }
+
+
 }

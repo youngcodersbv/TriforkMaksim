@@ -3,12 +3,44 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .affix {
+            top: 20px;
+        }
+    </style>
 </head>
 <body>
-<div>
-    <h1>Hello Fan</h1>
+    <img src="https://unsplash.com/photos/70YxSTWa2Zw/download?force=true" class="img-rounded" alt="Cinque Terre" width="1200" height="400">
+    <div class="container-fluid" style="background-color:#2196F3;color:#fff;height:100px;">
+        <p style="text-align:center;"></p>
+        <h1>Hello Fan</h1>
+    </div>
+<div class="container">
+    <div class="row">
+        <nav class="col-sm-3">
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="/teams">Teams</a></li>
+                <li><a href="/leagues">Leagues</a></li>
+                <li><a href="/giphy">your giphy</a></li>
+            </ul>
+        </nav>
+        <div class="col-sm-9">
+            <h1>Choose your team and add it to the league!</h1>
+        </div>
+    </div>
 </div>
-<p><a href="/teams">Teams</a></p>
-<p><a href="/leagues">Leagues</a></p>
+<!--<div class="container">-->
+<!--    <img src="https://unsplash.com/photos/70YxSTWa2Zw/download?force=true" class="img-rounded" alt="Cinque Terre" width="1000" height="400">-->
+
+<!--    <h1>Hello Fan</h1>-->
+
+<!--    <p><a href="/teams">Teams</a></p>-->
+<!--    <p><a href="/leagues">Leagues</a></p>-->
+<!--</div>-->
+
 </body>
 </html>

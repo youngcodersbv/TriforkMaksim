@@ -11,11 +11,14 @@ public class League {
     @Id
     @GeneratedValue
     private Long id;
-    @Column(nullable = false,length = 100)
+    @Column(nullable = false, length = 100)
     private String name;
     private String country;
     @OneToMany(mappedBy = "league", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<FootballTeam> footballTeamSet;
+
+    public League() {
+    }
 
     public Long getId() {
         return id;

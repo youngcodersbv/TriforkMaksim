@@ -2,7 +2,6 @@ package com.example.footballleagues.controller;
 
 import com.example.footballleagues.model.League;
 import com.example.footballleagues.repository.LeagueRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/leagues")
 public class LeagueController {
-    @Autowired
-    private LeagueRepository leagueRepository;
+    private final LeagueRepository leagueRepository;
+
+    public LeagueController(LeagueRepository leagueRepository) {
+        this.leagueRepository = leagueRepository;
+    }
 
     @GetMapping()
     public String index(Model model) {
