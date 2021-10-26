@@ -1,9 +1,9 @@
 package com.example.footballleagues.model;
 
-import com.example.footballleagues.model.FootballTeam;
-
 import javax.persistence.*;
+import java.util.Locale;
 import java.util.Set;
+import java.util.function.Predicate;
 
 @Entity
 @Table(name = "leagues", schema = "public")
@@ -16,6 +16,32 @@ public class League {
     private String country;
     @OneToMany(mappedBy = "league", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<FootballTeam> footballTeamSet;
+
+    public League(String name) {
+        this.name = name;
+    }
+
+    public static Predicate<League> createFilter(String filter) {
+        return new Predicate<League>() {
+            @Override
+            public boolean test(League league) {
+                return filter(filter, league);
+            }
+        };
+    }
+
+    public static boolean filter(String filter, League league) {
+        if (filter == null) {
+            return true;
+        }
+        if (league.getName().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT))) {
+            return true;
+        } else if (league.getCountry().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public League() {
     }
@@ -46,5 +72,14 @@ public class League {
 
     public Set<FootballTeam> getFootballTeamSet() {
         return footballTeamSet;
+    }
+
+    public void setFootballTeamSet(Set<FootballTeam> footballTeamSet) {
+        this.footballTeamSet = footballTeamSet;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

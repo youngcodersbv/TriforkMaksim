@@ -14,6 +14,7 @@
     <h1>Your giphy</h1>
 
     <form action="#" th:action="@{/giphy}" th:object="${giphy}" method="post">
+        <label>Your favorite player:</label>
         <input type="text" th:value="${giphy}" name="name"/>
         <input type="submit"/>
     </form>

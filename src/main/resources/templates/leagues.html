@@ -3,34 +3,39 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+
 </head>
 <body>
 <div class="container">
-<h1>Leagues</h1>
-<table>
-    <thead>
-    <tr>
-        <th th:text="ID">ID</th>
-        <th th:text="Name">Name</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="l: ${league}">
-        <td th:text="${l.id}">Oranges</td>
-        <td th:text="${l.name}">0.99</td>
-    </tr>
-    </tbody>
-</table>
-
-<p><a href="/teams">Teams overview</a></p>
-<form action="#" th:action="@{/leagues}" th:object="${league}" method="post">
-    <input type="text" th:value="${name}" name="name"/>
-    <input type="submit"/>
-</form>
-    </div>
+    <h1>Leagues</h1>
+    <table>
+        <thead class="table table-bordered" style="width: 100%">
+        <tr>
+            <th th:text="ID">ID</th>
+            <th th:text="Name">Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="l: ${league}">
+            <td th:text="${l.id}">Oranges</td>
+            <td th:text="${l.name}">0.99</td>
+            <td>
+                <a th:href="@{leagues/updateLegue(id=${l.id})}" class="btn btn-info">Update</a>
+            </td>
+            <td>
+                <a th:href="@{leagues/delete(id=${l.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p></p>
+    <p><a href="/teams">Teams overview</a></p>
+    <p></p>
+    <form action="#" th:action="@{/leagues}" th:object="${league}" method="post">
+        <input type="text" th:value="${name}" name="name"/>
+        <input type="submit"/>
+    </form>
+</div>
 </body>
 </html>

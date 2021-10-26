@@ -13,6 +13,8 @@ import org.springframework.context.annotation.Configuration;
 public class ClientConfig {
     @Value("${api.giphy.url}")
     private String giphyUrl;
+    @Value("${api.food.url}")
+    private String foodUrl;
 
 
     @Bean
@@ -23,4 +25,6 @@ public class ClientConfig {
                 .decoder(new GsonDecoder())
                 .target(GiphyClient.class, giphyUrl);
     }
+
+
 }

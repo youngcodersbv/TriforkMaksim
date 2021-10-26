@@ -6,7 +6,6 @@ import com.example.footballleagues.dto.GiphyDto;
 import com.example.footballleagues.model.Giphy;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,8 +39,6 @@ public class GiphyController {
     @PostMapping()
     public void postIndex(@ModelAttribute Giphy st, HttpServletResponse httpServletResponse) throws IOException {
         giphy = st;
-        log.info("START");
-        log.info("FINISH");
         GiphyDto giphyDto = giphyClient.getRich(giphyKey, giphy.getName());
         httpServletResponse.sendRedirect(giphyDto.getData().get(0).getUrl());
 

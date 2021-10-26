@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .affix {
+            top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <img src="https://unsplash.com/photos/70YxSTWa2Zw/download?force=true" class="img-rounded" alt="Cinque Terre" width="1200" height="400">
+    <p></p>
+    <p></p>
+
+    <h1>Your League</h1>
+    <table>
+        <thead class="table table-bordered" style="width: 100%">
+        <tr>
+            <th th:text="ID">ID</th>
+            <th th:text="Name">Name</th>
+            <th th:text="Country">Country</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="l: ${league}">
+            <td th:text="${l.id}">Oranges</td>
+            <td th:text="${l.name}">0.99</td>
+            <td th:text="${l.country}">0.99</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p></p>
+    <p></p>
+
+    <form th:action="@{/leagues/yourLeague/{id}(id=${league.id})}" th:object="${league}" method="POST">
+        <input type="text" th:value="${name}" name="name" class="form-control col-4 mb-4" placeholder="Enter Name"/><br/>
+        <input type="text" th:value="${country}" name="country" class="form-control col-4 mb-4" placeholder="Enter country" /><br/>
+        <input type="submit"/>
+    </form>
+</div>
+</body>
+</html>

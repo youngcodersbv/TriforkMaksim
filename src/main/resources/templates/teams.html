@@ -2,14 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-<!--    <title>Hello I will be displayed in the browser title</title>-->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+
 </head>
 <body>
 <h1>TEAMS</h1>
-<div></div>
+<div class="container">
 <table>
-    <thead>
+    <thead class="table table-bordered" style="width: 100%">
     <tr>
         <th th:text="ID">ID</th>
         <th th:text="Name"></th>
@@ -23,10 +24,19 @@
         <td th:text="${x.name}"></td>
         <td th:text="${x.home}"></td>
         <td th:text="${x.league}"></td>
+        <td>
+            <a th:href="@{teams/specificTeam(id=${x.id})}" class="btn btn-info">Update</a>
+        </td>
+        <td>
+            <a th:href="@{teams/delete(id=${x.id})}" class="btn btn-danger">Delete</a>
+
+        </td>
+
     </tr>
     </tbody>
 
 </table>
+
 <p><a href="/leagues">Leagues overview</a></p>
 
 <form action="#" th:action="@{/teams}" th:object="${teams}" method="post">
@@ -35,5 +45,7 @@
     <input type="text" th:value="${leagueId}" name="leagueId"/><br/>
     <input type="submit"/>
 </form>
+
+</div>
 </body>
 </html>

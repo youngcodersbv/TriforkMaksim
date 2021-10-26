@@ -20,6 +20,12 @@ public class FootballTeam {
     @JoinColumn(name = "league_id")
     private League league;
 
+    public FootballTeam() {
+    }
+
+    public FootballTeam(String name) {
+        this.name = name;
+    }
 
     public static Predicate<FootballTeam> createFilter(String filter) {
         return new Predicate<FootballTeam>() {
