@@ -3,6 +3,7 @@ package com.example.footballleagues.controller;
 import com.example.footballleagues.dto.TeamDto;
 import com.example.footballleagues.model.FootballTeam;
 import com.example.footballleagues.repository.FootballTeamRepository;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +19,7 @@ public class TestTeamJsonController {
     @Autowired
     FootballTeamJsonController controller;
 
-    @Test
+    /*@Test
     public void testUpdateTeam(){
         FootballTeam team = new FootballTeam("Milan");
         repository.save(team);
@@ -36,8 +37,9 @@ public class TestTeamJsonController {
 
         controller.deleteTeamById(id);
 
-    }
+    }*/
 
+    /*@Ignore
     @Test
     public void testDeleteTeam(){
         FootballTeam team = new FootballTeam("Ajax");
@@ -48,6 +50,6 @@ public class TestTeamJsonController {
 
         Optional<FootballTeam> footballTeam = repository.findById(id);
         assertTrue(footballTeam.isEmpty());
-    }
+    }*/
 
 }
