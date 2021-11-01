@@ -8,7 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.StreamSupport;
 
 @RestController()
 @Slf4j
@@ -16,12 +18,17 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class LeagueJsonController {
 
-
     private final LeagueService leagueService;
+
     @GetMapping
-    public League[] getAllUserInJson(@RequestParam(value = "filter", required = false) String filter) throws IOException {
+    public League[] getAllLeagueInJson(@RequestParam(value = "filter", required = false) String filter) {
         return leagueService.getAllLeagueInJsonService(filter);
     }
+//
+//    @GetMapping
+//    public League[] getAllLeagueInJson() {
+//        return leagueService.getAllLeagues();
+//    }
 
     @GetMapping("/{id}")
     public League getLeagueById(@PathVariable("id") long id) {
@@ -35,6 +42,6 @@ public class LeagueJsonController {
 
     @PutMapping("/{id}")
     public void updateLeagueById(@PathVariable("id") long id, @Valid @RequestBody LeagueDto leagueDto) {
-        leagueService.updateLeague(id,leagueDto);
+        leagueService.updateLeague(id, leagueDto);
     }
 }

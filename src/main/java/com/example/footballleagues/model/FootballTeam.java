@@ -28,12 +28,7 @@ public class FootballTeam {
     }
 
     public static Predicate<FootballTeam> createFilter(String filter) {
-        return new Predicate<FootballTeam>() {
-            @Override
-            public boolean test(FootballTeam team) {
-                return filter(filter, team);
-            }
-        };
+        return team -> filter(filter, team);
     }
 
     public static boolean filter(String filter, FootballTeam team) {
@@ -42,11 +37,7 @@ public class FootballTeam {
         }
         if (team.getName().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT))) {
             return true;
-        } else if (team.getHome().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT))) {
-            return true;
-        } else {
-            return false;
-        }
+        } else return team.getHome().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT));
     }
 
     public Long getId() {

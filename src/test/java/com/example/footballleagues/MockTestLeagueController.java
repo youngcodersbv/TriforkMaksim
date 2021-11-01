@@ -1,10 +1,9 @@
 package com.example.footballleagues;
 
 import com.example.footballleagues.controller.LeagueJsonController;
-import com.example.footballleagues.model.FootballTeam;
 import com.example.footballleagues.model.League;
 import com.example.footballleagues.repository.LeagueRepository;
-import com.example.footballleagues.service.LeagueService;
+import com.example.footballleagues.service.LeagueServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,12 +20,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
@@ -37,7 +34,7 @@ public class MockTestLeagueController {
     @Mock
     private LeagueRepository repository;
     @Mock
-    private LeagueService service;
+    private LeagueServiceImpl service;
     private AutoCloseable autoCloseable;
 
 
@@ -51,7 +48,7 @@ public class MockTestLeagueController {
         JacksonTester.initFields(this, new ObjectMapper());
         mvc = MockMvcBuilders.standaloneSetup(leagueJsonController)
                 .build();
-        service = new LeagueService(repository);
+        service = new LeagueServiceImpl(repository);
     }
 
     @Test

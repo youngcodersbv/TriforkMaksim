@@ -38,20 +38,14 @@ public class TeamService {
                     }
                     if(team.getName().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT))) {
                         return true;
-                    } else if(team.getHome().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT))) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    } else return team.getHome().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT));
                 })
-                .filter((FootballTeam team) -> {
-                    return FootballTeam.filter(filter, team);
-                })
+                .filter((FootballTeam team) -> FootballTeam.filter(filter, team))
                 .filter(commute -> FootballTeam.filter(filter, commute))
                 .filter(createFilter(filter))
                 .forEach(result::add);
 
-        return result.toArray(new FootballTeam[result.size()]);
+        return result.toArray(new FootballTeam[0]);
     }
 
     public void deleteTeamByIdService(long id) {

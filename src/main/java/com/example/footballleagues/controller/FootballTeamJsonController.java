@@ -25,9 +25,8 @@ public class FootballTeamJsonController {
 
     @GetMapping("/{id}")
     public FootballTeam getTeamById(@PathVariable("id") long id) {
-       FootballTeam team = teamRepository.findById(id).orElseThrow(()
-                -> new TeamNotFoundException("id - " + id));
-        return team;
+        return teamRepository.findById(id).orElseThrow(()
+                 -> new TeamNotFoundException("id - " + id));
     }
 
     @DeleteMapping("/{id}")

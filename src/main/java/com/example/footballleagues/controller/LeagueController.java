@@ -21,7 +21,7 @@ public class LeagueController {
 
     @GetMapping()
     public String index(Model model) {
-        Iterable iter = leagueRepository.findAll();
+        Iterable<League> iter = leagueRepository.findAll();
         model.addAttribute("league", iter);
         return "leagues";
     }
@@ -36,7 +36,8 @@ public class LeagueController {
     public String updateTeam(@PathVariable("id") Long id,
                             @Valid @ModelAttribute LeagueDto leagueDto) {
 
-        League league = leagueRepository.findById(id).get();
+        League league = leagueRepository.findById(id).orElseThrow(()
+                -> new LeagueNotFoundException("id - " + id));
         league.setName(leagueDto.getName());
         league.setCountry(leagueDto.getCountry());
         leagueRepository.save(league);
@@ -44,7 +45,7 @@ public class LeagueController {
     }
 
 
-    @GetMapping("/updateLegue")
+    @GetMapping("/updateLeague")
     public String showUpdateForm(@RequestParam(value = "id", required = false) Long id,
                                  Model model) {
         League league = leagueRepository.findById(id).orElseThrow(()
