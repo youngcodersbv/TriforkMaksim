@@ -1,16 +1,12 @@
 package com.example.footballleagues.controller;
 
 import com.example.footballleagues.model.League;
-import com.example.footballleagues.repository.LeagueRepository;
 import com.example.footballleagues.service.LeagueService;
-import com.example.footballleagues.service.LeagueServiceImpl;
-import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
@@ -20,8 +16,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @ActiveProfiles("test")
 @ExtendWith(SpringExtension.class)
@@ -46,7 +41,7 @@ public class LeagueJsonControllerTest {
         when(leagueService.getAllLeagueInJsonService(ArgumentMatchers.anyString())).thenReturn(myLeages);
 
         // Perform test
-        RequestBuilder request = MockMvcRequestBuilders.get("/json/leagues");
+        RequestBuilder request = MockMvcRequestBuilders.get("/json/leagues?filter=");
         MvcResult result = mvc.perform(request).andReturn();
 
         System.out.println(result.getResponse().getContentAsString());
